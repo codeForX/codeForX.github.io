@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <h1>projects and filler</h1>
+    <p class="important">
+      Welcome to my  homepage.
+    </p>
+    <hr>
+    <div class="card-columns">
+    {% for card in cards %}
+        <div class="card">
+            {% if card.picture %}
+            <img src="{{ url_for('static', filename = card.picture ) }}" class="card-img-top" alt="test">
+            {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{card.title}}</h5>
+                    <p class="card-text">{{card.description}}</p>
+                {%if card.link %}
+                    <a href="{{card.link}}" class="btn btn-primary float-right">check it out</a>
+                        
+                    <br>
+                {% endif %}
+                </div>
+                <!-- add button logic -->
+                <div class="card-footer">
+                <p class="card-text"><small class="text-muted">posted on <i class="fa fa-toggle-on" aria-hidden="true"></i> {{card.datePosted.strftime('%m-%d-%y') }}</small></p>
+                </div>
+          </div>
+    {% endfor %}
+    </div>
+{% endblock %}
